@@ -26,6 +26,7 @@
 })();
 
 // Language selector
+console.log('Language selector is loaded');
 var url = window.location.href;
 if (url.indexOf("demandware") <= 0){
     // Add anguage container
