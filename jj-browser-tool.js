@@ -6,8 +6,9 @@
 // @author       Jack & Jones Ecommerce
 // @include      *staging.bing.*.com*
 // @grant        none
+// @updateURL    https://raw.githubusercontent.com/jackjonesfashion/jj-browser-tool/master/jj-browser-tool.js
+// @downloadURL  https://raw.githubusercontent.com/jackjonesfashion/jj-browser-tool/master/jj-browser-tool.js
 // ==/UserScript==
-
 
 // ContentAssetID finder
 (function() {
