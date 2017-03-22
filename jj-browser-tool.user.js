@@ -6,6 +6,7 @@
 // @author       Jack & Jones Ecommerce
 // @include      *staging.bing.*.com*
 // @include      *bse-test.com*
+// @require      https://code.jquery.com/jquery-3.0.0-beta1.min.js
 // @grant        none
 // @updateURL    https://raw.githubusercontent.com/jackjonesfashion/jj-browser-tool/master/jj-browser-tool.user.js
 // @downloadURL  https://raw.githubusercontent.com/jackjonesfashion/jj-browser-tool/master/jj-browser-tool.user.js
