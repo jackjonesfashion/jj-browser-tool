@@ -5,6 +5,7 @@
 // @description  Find the content asset ID and set it as the title of the container
 // @author       Jack & Jones Ecommerce
 // @include      *staging.bing.*.com*
+// @include      *bse-test.com*
 // @grant        none
 // @updateURL    https://raw.githubusercontent.com/jackjonesfashion/jj-browser-tool/master/jj-browser-tool.user.js
 // @downloadURL  https://raw.githubusercontent.com/jackjonesfashion/jj-browser-tool/master/jj-browser-tool.user.js
