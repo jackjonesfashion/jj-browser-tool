@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         jj-browser-tool
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  Find the content asset ID and set it as the title of the container
 // @author       Jack & Jones Ecommerce
 // @include      *staging.bing.*.com*
