@@ -1,107 +1,148 @@
 // ==UserScript==
-// @name         jj-browser-tool
-// @namespace    http://tampermonkey.net/
-// @version      0.2
-// @description  Find the content asset ID and set it as the title of the container
-// @author       Jack & Jones Ecommerce
-// @include      *staging.bing.*.com*
-// @include      *bse-test.com*
-// @require      https://code.jquery.com/jquery-3.0.0-beta1.min.js
-// @grant        none
+// @name         jj-browser-tool
+// @namespace    http://tampermonkey.net/
+// @version      0.3
+// @description  BING Language selector
+// @author       Jack & Jones Ecommerce
+// @include      *.jackjones.com*
+// @include      *.selected.com*
+// @require      https://code.jquery.com/jquery-3.0.0-beta1.min.js
 // @updateURL    https://raw.githubusercontent.com/jackjonesfashion/jj-browser-tool/master/jj-browser-tool.user.js
 // @downloadURL  https://raw.githubusercontent.com/jackjonesfashion/jj-browser-tool/master/jj-browser-tool.user.js
 // ==/UserScript==
 
-// ContentAssetID finder
-(function() {
-    'use strict';
-
-    console.log('ContentAssetID Finder is loaded');
-    var content = document.querySelectorAll('[data-layer-promotion-view]');
-
-    for (var i = 0; i < content.length; i++) {
-        var currentContent = content[i];
-        var ContentId = JSON.parse(currentContent.getAttribute('data-layer-promotion-view')).id;
-        currentContent.setAttribute('title', ContentId);
-    }
-})();
-
-// Language selector
-console.log('Language selector is loaded');
 var url = window.location.href;
+
 if (url.indexOf("demandware") <= 0){
-    // Add anguage container
-    $(".servicebar__wrapper").append("<div class='language-selector' style='margin: auto;width: 100%;order: 3px solid green;padding: 0px; text-align:center; line-height:normal; position:absolute;'></div>");
+    // Add hover text box
+    $(".content-wrapper").append("<div class='hover-textbox' style='background-color:#fff; display:none; border-style: solid; padding:10px; height:70px; width:220px;'></div>");
 
-    // Is it homepage?
-    if (url.indexOf("home") >= 0){
-        // Append languages
-        $(".language-selector").append("<a style='padding:10px;' href='/dk/da/home'>DK</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/de/de/home'>DE</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/nl/nl/home'>NL</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/no/no/home'>NO</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/fr/fr/home'>FR</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/se/sv/home'>SE</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/it/it/home'>IT</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/ie/en/home'>IE</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/es/es/home'>ES</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/be/nl/home'>BE</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/gb/en/home'>GB</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/fi/fi/home'>FI</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/ch/de/home'>CH</a>");
-    }
+    // Add helper texts
+    $(".servicebar__wrapper").append("<div class='service-helper' style='margin: auto;width: 100%; margin-top:45px;order: 3px solid green;padding: 0px; text-align:center; line-height:normal; position:absolute;'></div>");
+     
+    // Add language container
+    $(".servicebar__wrapper").append("<div class='language-selector' style='margin: auto;width: 100%; margin-top:0px;order: 3px solid green;padding: 0px; text-align:center; line-height:normal; position:absolute;'></div>");
 
-    // Is it PLP?
-    if ((url.indexOf("brands") >= 0) || (url.indexOf("merker") >= 0) || (url.indexOf("braendit") >= 0) || (url.indexOf("merken") >= 0) || (url.indexOf("marken") >= 0) || (url.indexOf("marcas") >= 0) || (url.indexOf("varumaerken") >= 0) || (url.indexOf("marques") >= 0) || ($("#wrapper").hasClass("plp") > 0)){
-        var cgid = "";
-        if($(".breadcrumb-navigation__link").length > 0){
-            cgid = $(".breadcrumb-navigation__link").last().attr("data-category-id");
-        } else if(url.indexOf("intelligence") >= 0){
-            cgid = "jj-brands-jeansintelligence";
-        } else if(url.indexOf("core") >= 0){
-            cgid = "jj-brands-core";
-        } else if(url.indexOf("premium") >= 0){
-            cgid = "jj-brands-premium";
-        } else if(url.indexOf("originals") >= 0){
-            cgid = "jj-brands-originals";
-        } else if(url.indexOf("vintage") >= 0){
-            cgid = "jj-brands-vintage";
-        } else if(url.indexOf("footwear") >= 0){
-            cgid = "jj-brands-footwear";
-        } else if(url.indexOf("tech") >= 0){
-            cgid = "jj-brands-tech";
-        }
+    // Is it homepage?
+    if (url.indexOf("home") >= 0 && $("#wrapper").hasClass("homepage") > 0){
+        // Append languages
+        updateTopNavLangaugeSelector("home", "");
+    }
 
-        $(".language-selector").append("<a style='padding:10px;' href='/dk/da/search?cgid="+cgid+"'>DK</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/de/de/search?cgid="+cgid+"'>DE</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/nl/nl/search?cgid="+cgid+"'>NL</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/no/no/search?cgid="+cgid+"'>NO</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/fr/fr/search?cgid="+cgid+"'>FR</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/se/sv/search?cgid="+cgid+"'>SE</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/it/it/search?cgid="+cgid+"'>IT</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/ie/en/search?cgid="+cgid+"'>IE</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/es/es/search?cgid="+cgid+"'>ES</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/be/nl/search?cgid="+cgid+"'>BE</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/gb/en/search?cgid="+cgid+"'>GB</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/fi/fi/search?cgid="+cgid+"'>FI</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/ch/de/search?cgid="+cgid+"'>CH</a>");
-    }
+    // Is it PLP?
+    if ($("#wrapper").hasClass("plp") > 0 || (url.indexOf("home") === -1 && $("#wrapper").hasClass("homepage") > 0)){
+        var cgid = "";
+        if($(".breadcrumb-navigation__link").length > 0){
+            cgid = $(".breadcrumb-navigation__link").last().attr("data-category-id");
+        } else if(url.indexOf("sl/homme") >= 0){
+            cgid = "sl-homme";
+        } else if(url.indexOf("sl/femme") >= 0){
+            cgid = "sl-femme";
+        }
 
-    // Is it PDP?
-    if ($("#wrapper").hasClass("pdp") > 0){
-        var pid = $("#pid").val();
-        $(".language-selector").append("<a style='padding:10px;' href='/dk/da/"+pid+".html'>DK</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/de/de/"+pid+".html'>DE</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/nl/nl/"+pid+".html'>NL</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/no/no/"+pid+".html'>NO</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/fr/fr/"+pid+".html'>FR</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/se/sv/"+pid+".html'>SE</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/it/it/"+pid+".html'>IT</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/ie/en/"+pid+".html'>IE</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/es/es/"+pid+".html'>ES</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/be/nl/"+pid+".html'>BE</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/gb/en/"+pid+".html'>GB</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/fi/fi/"+pid+".html'>FI</a>");
-        $(".language-selector").append("<a style='padding:10px;' href='/ch/de/"+pid+".html'>CH</a>");
-    }
+        // Append languages
+        updateTopNavLangaugeSelector("plp", cgid);
+    }
+
+    // Is it PDP?
+    if ($("#wrapper").hasClass("pdp") > 0){
+        var pid = $("#pid").val();
+
+        // Append languages
+        updateTopNavLangaugeSelector("pdp", pid);
+
+        var pid = $("#pid").val();
+        var pname = $(".product-name--visible").text();
+        var cgid = "";
+        if($(".breadcrumb-navigation__link").length > 0){
+            cgid = $(".breadcrumb-navigation__link").last().attr("data-category-id");
+        }
+        var so = dataLayer[0]["ecommerce"]["detail"]["products"][0]["colorPattern"];
+        var pean = dataLayer[0]["ecommerce"]["detail"]["products"][0]["id"];
+        //var str = JSON.stringify(dataLayer, null, 4);
+
+        $(".service-helper").append("Stylename: " + pname +  ".&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Style ID: " + pid + ".&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Primary Category: " + cgid + ".&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Style Option: <span class='js__update--so'>" + so + "</span>" + ".&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EAN: <span class='js__update--ean'>" + pean + "</span>");
+    }
+    
+    $(".market").hover(function() {
+        $(this).find("a:first").css({ 'color': 'red' });
+        $( this ).find("div").fadeIn( 100 );
+    }, function(){
+        $(this).find("a:first").css({ 'color': '#666' });
+        $( this ).find("div").fadeOut( 100 );
+    });
+
+    var placeholder = "";
+    $(".widget-smart").hover(function(event) {
+        var dataLayerObj = $(this).attr("data-layer-promotion-view");
+            dataLayerObj = $.parseJSON(dataLayerObj);
+            var left = event.pageX;
+            var top = event.pageY - 100;
+        if(placeholder != dataLayerObj.id){
+            placeholder = dataLayerObj.id;
+
+            $(".hover-textbox").css({"display":"inline", "position":"absolute", "z-index":10, "left":left, "top":top});
+            $(".hover-textbox").html("<b>ID: </b>"+dataLayerObj.id+"<br><b>Row: </b>"+dataLayerObj.row_id);
+        }
+    });
+    $(".product-tile").hover(function(event) {
+        var dataLayerObj = $(this).attr("data-layer-impression");
+            dataLayerObj = $.parseJSON(dataLayerObj);
+            var left = event.pageX;
+            var top = event.pageY - 100;
+        if(placeholder != dataLayerObj.id){
+            placeholder = dataLayerObj.id;
+
+
+            $(".hover-textbox").css({"display":"inline", "position":"absolute", "z-index":10, "left":left, "top":top});
+            $(".hover-textbox").html("<b>EAN: </b>"+dataLayerObj.id+"<br><b>Style: </b>"+dataLayerObj.articleNumber+"<br><b>Subbrand: </b>"+dataLayerObj.subbrand);
+        }
+    });
+
+
+
+}
+
+function updateTopNavLangaugeSelector(type, id){
+    var area = type;
+    var urlPath = "home";
+    if(type == "plp"){
+       urlPath = "search?cgid="+id;
+        area = id;
+    } else if(type == "pdp"){
+      urlPath = id+".html";
+        area = "";
+    }
+
+    $(".language-selector").append("<div class='lang-dk market' style='width:20px; display:inline;'><a style='padding:10px;' href='/dk/da/"+urlPath+"'>DK</a></div>");
+        $(".lang-dk").append("<div class='langs' style='position:absolute; margin-left: auto; margin-right: auto;left: -470px;right: 0; display:none'><a style='padding:10px;' href='/dk/en/"+urlPath+"'>EN</a><a style='padding:10px;' href='/dk/da/"+urlPath+"'>DK</a></div>");
+        $(".language-selector").append("<div class='lang-de market' style='width:20px; display:inline;'><a style='padding:10px;' href='/de/de/home'>DE</a></div>");
+        $(".lang-de").append("<div class='langs' style='position:absolute; margin-left: auto; margin-right: auto;left: -390px;right: 0; display:none;'><a style='padding:10px;' href='/de/en/"+urlPath+"'>EN</a><a style='padding:10px;' href='/de/de/"+urlPath+"'>DE</a></div>");
+        $(".language-selector").append("<div class='lang-nl market' style='width:20px; display:inline;'><a style='padding:10px;' href='/nl/nl/home'>NL</a></div>");
+        $(".lang-nl").append("<div class='langs' style='position:absolute; margin-left: auto; margin-right: auto;left: -320px;right: 0; display:none;'><a style='padding:10px;' href='/nl/en/"+urlPath+"'>EN</a><a style='padding:10px;' href='/nl/nl/"+urlPath+"'>NL</a></div>");
+        $(".language-selector").append("<div class='lang-no market' style='width:20px; display:inline;'><a style='padding:10px;' href='/no/no/home'>NO</a></div>");
+        $(".lang-no").append("<div class='langs' style='position:absolute; margin-left: auto; margin-right: auto;left: -240px;right: 0; display:none;'><a style='padding:10px;' href='/no/en/"+urlPath+"'>EN</a><a style='padding:10px;' href='/no/no/"+urlPath+"'>NO</a></div>");
+        $(".language-selector").append("<div class='lang-fr market' style='width:20px; display:inline;'><a style='padding:10px;' href='/fr/fr/home'>FR</a></div>");
+        $(".lang-fr").append("<div class='langs' style='position:absolute; margin-left: auto; margin-right: auto;left: -170px;right: 0; display:none;'><a style='padding:10px;' href='/fr/en/"+urlPath+"'>EN</a><a style='padding:10px;' href='/fr/fr/"+urlPath+"'>FR</a></div>");
+        $(".language-selector").append("<div class='lang-se market' style='width:20px; display:inline;'><a style='padding:10px;' href='/se/sv/home'>SE</a></div>");
+        $(".lang-se").append("<div class='langs' style='position:absolute; margin-left: auto; margin-right: auto;left: -100px;right: 0; display:none;'><a style='padding:10px;' href='/se/en/"+urlPath+"'>EN</a><a style='padding:10px;' href='/se/sv/"+urlPath+"'>SE</a></div>");
+        $(".language-selector").append("<div class='lang-it market' style='width:20px; display:inline;'><a style='padding:10px;' href='/it/it/home'>IT</a></div>");
+        $(".lang-it").append("<div class='langs' style='position:absolute; margin-left: auto; margin-right: auto;left: -30px;right: 0; display:none;'><a style='padding:10px;' href='/it/en/"+urlPath+"'>EN</a><a style='padding:10px;' href='/it/it/"+urlPath+"'>IT</a></div>");
+        $(".language-selector").append("<div class='lang-ie market' style='width:20px; display:inline;'><a style='padding:10px;' href='/ie/en/home'>IE</a></div>");
+        $(".lang-ie").append("<div class='langs' style='position:absolute; margin-left: auto; margin-right: auto;left: 30px;right: 0; display:none;'><a style='padding:10px;' href='/ie/en/ho"+urlPath+"me'>EN</a></div>");
+        $(".language-selector").append("<div class='lang-es market' style='width:20px; display:inline;'><a style='padding:10px;' href='/es/es/home'>ES</a></div>");
+        $(".lang-es").append("<div class='langs' style='position:absolute; margin-left: auto; margin-right: auto;left: 100px;right: 0; display:none;'><a style='padding:10px;' href='/es/en/"+urlPath+"'>EN</a><a style='padding:10px;' href='/es/es/"+urlPath+"'>ES</a></div>");
+        $(".language-selector").append("<div class='lang-be market' style='width:20px; display:inline;'><a style='padding:10px;' href='/be/nl/home'>BE</a></div>");
+        $(".lang-be").append("<div class='langs' style='position:absolute; margin-left: auto; margin-right: auto;left: 170px;right: 0; display:none;'><a style='padding:10px;' href='/be/en/"+urlPath+"'>EN</a><a style='padding:10px;' href='/be/nl/"+urlPath+"'>BE</a><a style='padding:10px;' href='/be/fr/"+urlPath+"'>FR</a></div>");
+        $(".language-selector").append("<div class='lang-gb market' style='width:20px; display:inline;'><a style='padding:10px;' href='/gb/en/home'>GB</a></div>");
+        $(".lang-gb").append("<div class='langs' style='position:absolute; margin-left: auto; margin-right: auto;left: 250px;right: 0; display:none;'><a style='padding:10px;' href='/gb/en/"+urlPath+"'>EN</a></div>");
+        $(".language-selector").append("<div class='lang-fi market' style='width:20px; display:inline;'><a style='padding:10px;' href='/fi/fi/home'>FI</a></div>");
+        $(".lang-fi").append("<div class='langs' style='position:absolute; margin-left: auto; margin-right: auto;left: 320px;right: 0; display:none;'><a style='padding:10px;' href='/fi/en/"+urlPath+"'>EN</a><a style='padding:10px;' href='/fi/fi/"+urlPath+"'>FI</a></div>");
+        $(".language-selector").append("<div class='lang-ch market' style='width:20px; display:inline;'><a style='padding:10px;' href='/ch/de/home'>CH</a></div>");
+        $(".lang-ch").append("<div class='langs' style='position:absolute; margin-left: auto; margin-right: auto;left: 390px;right: 0; display:none;'><a style='padding:10px;' href='/ch/en/"+urlPath+"'>EN</a><a style='padding:10px;' href='/ch/de/"+urlPath+"'>CH</a><a style='padding:10px;' href='/ch/fr/"+urlPath+"'>FR</a></div>");
+        $(".language-selector").append("<div class='lang-at market' style='width:20px; display:inline;'><a style='padding:10px;' href='/at/de/home'>AT</a></div>");
+        $(".lang-at").append("<div class='langs' style='position:absolute; margin-left: auto; margin-right: auto;left: 470px;right: 0; display:none;'><a style='padding:10px;' href='/at/en/"+urlPath+"'>EN</a><a style='padding:10px;' href='/at/de/"+urlPath+"'>AT</a></div>");
+    if(area !== ""){
+        $(".service-helper").append(area);
+    }
 }
