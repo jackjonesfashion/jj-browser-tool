@@ -98,9 +98,6 @@ if (url.indexOf("demandware") <= 0){
             $(".hover-textbox").html("<b>EAN: </b>"+dataLayerObj.id+"<br><b>Style: </b>"+dataLayerObj.articleNumber+"<br><b>Subbrand: </b>"+dataLayerObj.subbrand);
         }
     });
-
-
-
 }
 
 function updateTopNavLangaugeSelector(type, id){
