@@ -15,7 +15,7 @@ var url = window.location.href;
 
 if (url.indexOf("demandware") <= 0){
     // Add hover text box
-    $(".content-wrapper").append("<div class='hover-textbox' style='background-color:#fff; display:none; border-style: solid; padding:10px; height:70px; width:220px;'></div>");
+    $(".content-wrapper").append("<div class='hover-textbox' style='background-color:#fff; display:none; border-style: solid; padding:10px; height:90px; width:250px;'></div>");
 
     // Add helper texts
     $(".servicebar__wrapper").append("<div class='service-helper' style='margin: auto;width: 100%; margin-top:45px;order: 3px solid green;padding: 0px; text-align:center; line-height:normal; position:absolute;'></div>");
@@ -74,15 +74,28 @@ if (url.indexOf("demandware") <= 0){
 
     var placeholder = "";
     $(".widget-smart").hover(function(event) {
+        var row_area_type = "jj-home-page-rows";
+        var contextName = "folder";
+        var region = "BSE-DK";
         var dataLayerObj = $(this).attr("data-layer-promotion-view");
-            dataLayerObj = $.parseJSON(dataLayerObj);
-            var left = event.pageX;
-            var top = event.pageY - 100;
+        dataLayerObj = $.parseJSON(dataLayerObj);
+        var row_id = dataLayerObj.row_id;
+        if(row_id.indexOf("category") >= 0){
+            var name_parts = dataLayerObj.name.split("||");
+            row_area_type = name_parts[0];
+            contextName = "category";
+            region = "BSE-DK";
+        }
+        var left = event.pageX;
+        var top = event.pageY - 100;
         if(placeholder != dataLayerObj.id){
             placeholder = dataLayerObj.id;
+            var slot_url = "https://staging.bing.bestseller.com/on/demandware.store/Sites-Site/-/StorefrontEditing-Slot?SlotID="+dataLayerObj.row_id+"&ContextName="+contextName+"&ContextUUID="+row_area_type+"&Site="+region;
+            var content_url = "https://staging.bing.bestseller.com/on/demandware.store/Sites-Site/default/ViewLibraryContentList_52-Dispatch?FolderUUID=&LibraryUUID=bcD6EiaaiT2loaaadqVwsUVdqy&SearchTerm="+dataLayerObj.id+"&find=&NewContentID=&PageNumberPrefix=PageNumber_&PageableID=586508a93eec31a34fdd8dbb0c&PageableName=ContentAssets&CurrentPageNumber=0";
 
-            $(".hover-textbox").css({"display":"inline", "position":"absolute", "z-index":10, "left":left, "top":top});
-            $(".hover-textbox").html("<b>ID: </b>"+dataLayerObj.id+"<br><b>Row: </b>"+dataLayerObj.row_id);
+            $(".hover-textbox").css({"display":"inline", "position":"absolute", "z-index":10, "left":left, "top":top});
+            $(".hover-textbox").html("<b>Type: </b>Smart Widget<br><b>ID: </b><a href='"+content_url+"' style='color:blue;font-weight:normal;text-transform:lowercase;' target='_blank'>"+dataLayerObj.id+"</a><br><b>Row: </b><a href='"+slot_url+"' style='color:blue;font-weight:normal;text-transform:lowercase;' target='_blank'>"+dataLayerObj.row_id+"</a>");
+            
         }
     });
     $(".product-tile").hover(function(event) {
@@ -95,7 +108,7 @@ if (url.indexOf("demandware") <= 0){
 
 
             $(".hover-textbox").css({"display":"inline", "position":"absolute", "z-index":10, "left":left, "top":top});
-            $(".hover-textbox").html("<b>EAN: </b>"+dataLayerObj.id+"<br><b>Style: </b>"+dataLayerObj.articleNumber+"<br><b>Subbrand: </b>"+dataLayerObj.subbrand);
+            $(".hover-textbox").html("<b>Type: </b>Product Tile<br><b>EAN: </b>"+dataLayerObj.id+"<br><b>Style: </b>"+dataLayerObj.articleNumber+"<br><b>Subbrand: </b>"+dataLayerObj.subbrand);
         }
     });
 }
