@@ -98,6 +98,108 @@ if (url.indexOf("demandware") <= 0){
             
         }
     });
+    $(".widget__full-width-text").hover(function(event) {
+        var row_area_type = "jj-home-page-rows";
+        var contextName = "folder";
+        var region = "BSE-DK";
+        var dataLayerObj = $(this).attr("data-layer-promotion-view");
+        dataLayerObj = $.parseJSON(dataLayerObj);
+        var row_id = dataLayerObj.row_id;
+        if(row_id.indexOf("category") >= 0){
+            var name_parts = dataLayerObj.name.split("||");
+            row_area_type = name_parts[0];
+            contextName = "category";
+            region = "BSE-DK";
+        }
+        var left = event.pageX;
+        var top = event.pageY - 100;
+        if(placeholder != dataLayerObj.id){
+            placeholder = dataLayerObj.id;
+            var slot_url = "https://staging.bing.bestseller.com/on/demandware.store/Sites-Site/-/StorefrontEditing-Slot?SlotID="+dataLayerObj.row_id+"&ContextName="+contextName+"&ContextUUID="+row_area_type+"&Site="+region;
+            var content_url = "https://staging.bing.bestseller.com/on/demandware.store/Sites-Site/default/ViewLibraryContentList_52-Dispatch?FolderUUID=&LibraryUUID=bcD6EiaaiT2loaaadqVwsUVdqy&SearchTerm="+dataLayerObj.id+"&find=&NewContentID=&PageNumberPrefix=PageNumber_&PageableID=586508a93eec31a34fdd8dbb0c&PageableName=ContentAssets&CurrentPageNumber=0";
+
+            $(".hover-textbox").css({"display":"inline", "position":"absolute", "z-index":10, "left":left, "top":top});
+            $(".hover-textbox").html("<b>Type: </b>Text Widget<br><b>ID: </b><a href='"+content_url+"' style='color:blue;font-weight:normal;text-transform:lowercase;' target='_blank'>"+dataLayerObj.id+"</a><br><b>Row: </b><a href='"+slot_url+"' style='color:blue;font-weight:normal;text-transform:lowercase;' target='_blank'>"+dataLayerObj.row_id+"</a>");
+
+        }
+    });
+    $(".widget-product").hover(function(event) {
+        var row_area_type = "jj-home-page-rows";
+        var contextName = "folder";
+        var region = "BSE-DK";
+        var dataLayerObj = $(this).find("a").attr("data-layer-click");
+        dataLayerObj = $.parseJSON(dataLayerObj);
+        var row_id = dataLayerObj.ecommerce.promoClick.promotions[0].row_id;
+        if(row_id.indexOf("category") >= 0){
+            var name_parts = dataLayerObj.ecommerce.promoClick.promotions[0].name.split("||");
+            row_area_type = name_parts[0];
+            contextName = "category";
+            region = "BSE-DK";
+        }
+        var left = event.pageX;
+        var top = event.pageY - 100;
+        if(placeholder != dataLayerObj.ecommerce.promoClick.promotions[0].id){
+            placeholder = dataLayerObj.ecommerce.promoClick.promotions[0].id;
+            var slot_url = "https://staging.bing.bestseller.com/on/demandware.store/Sites-Site/-/StorefrontEditing-Slot?SlotID="+dataLayerObj.ecommerce.promoClick.promotions[0].row_id+"&ContextName="+contextName+"&ContextUUID="+row_area_type+"&Site="+region;
+            var content_url = "https://staging.bing.bestseller.com/on/demandware.store/Sites-Site/default/ViewLibraryContentList_52-Dispatch?FolderUUID=&LibraryUUID=bcD6EiaaiT2loaaadqVwsUVdqy&SearchTerm="+dataLayerObj.ecommerce.promoClick.promotions[0].id+"&find=&NewContentID=&PageNumberPrefix=PageNumber_&PageableID=586508a93eec31a34fdd8dbb0c&PageableName=ContentAssets&CurrentPageNumber=0";
+
+            $(".hover-textbox").css({"display":"inline", "position":"absolute", "z-index":10, "left":left, "top":top});
+            $(".hover-textbox").html("<b>Type: </b>Product Widget<br><b>ID: </b><a href='"+content_url+"' style='color:blue;font-weight:normal;text-transform:lowercase;' target='_blank'>"+dataLayerObj.ecommerce.promoClick.promotions[0].id+"</a><br><b>Row: </b><a href='"+slot_url+"' style='color:blue;font-weight:normal;text-transform:lowercase;' target='_blank'>"+dataLayerObj.ecommerce.promoClick.promotions[0].row_id+"</a>");
+
+        }
+    });
+    $(".usp-area").hover(function(event) {
+        var row_area_type = "jj-home-page-rows";
+        var contextName = "folder";
+        var region = "BSE-DK";
+        var dataLayerObj = $(this).find("ul").attr("data-layer-promotion-view");
+        dataLayerObj = $.parseJSON(dataLayerObj);
+        var row_id = dataLayerObj.row_id;
+        if(row_id.indexOf("category") >= 0){
+            var name_parts = dataLayerObj.name.split("||");
+            row_area_type = name_parts[0];
+            contextName = "category";
+            region = "BSE-DK";
+        }
+        var left = event.pageX;
+        var top = event.pageY - 100;
+        if(placeholder != dataLayerObj.id){
+            placeholder = dataLayerObj.id;
+            var slot_url = "https://staging.bing.bestseller.com/on/demandware.store/Sites-Site/-/StorefrontEditing-Slot?SlotID="+dataLayerObj.row_id+"&ContextName="+contextName+"&ContextUUID="+row_area_type+"&Site="+region;
+            var content_url = "https://staging.bing.bestseller.com/on/demandware.store/Sites-Site/default/ViewLibraryContentList_52-Dispatch?FolderUUID=&LibraryUUID=bcD6EiaaiT2loaaadqVwsUVdqy&SearchTerm="+dataLayerObj.id+"&find=&NewContentID=&PageNumberPrefix=PageNumber_&PageableID=586508a93eec31a34fdd8dbb0c&PageableName=ContentAssets&CurrentPageNumber=0";
+
+            $(".hover-textbox").css({"display":"inline", "position":"absolute", "z-index":10, "left":left, "top":top});
+            $(".hover-textbox").html("<b>Type: </b>Smart Widget<br><b>ID: </b><a href='"+content_url+"' style='color:blue;font-weight:normal;text-transform:lowercase;' target='_blank'>"+dataLayerObj.id+"</a><br><b>Row: </b><a href='"+slot_url+"' style='color:blue;font-weight:normal;text-transform:lowercase;' target='_blank'>"+dataLayerObj.row_id+"</a>");
+
+        }
+    });
+    $(".instagram-feed").hover(function(event) {
+        var row_area_type = "jj-home-page-rows";
+        var contextName = "folder";
+        var region = "BSE-DK";
+        var dataLayerObj = $(this).attr("data-layer-promotion-view");
+        dataLayerObj = $.parseJSON(dataLayerObj);
+        var row_id = dataLayerObj.row_id;
+        if(row_id){
+            if(row_id.indexOf("category") >= 0){
+                var name_parts = dataLayerObj.name.split("||");
+                row_area_type = name_parts[0];
+                contextName = "category";
+                region = "BSE-DK";
+            }
+        }
+        var left = event.pageX;
+        var top = event.pageY - 100;
+        if(placeholder != dataLayerObj.id){
+            placeholder = dataLayerObj.id;
+            var slot_url = "https://staging.bing.bestseller.com/on/demandware.store/Sites-Site/-/StorefrontEditing-Slot?SlotID="+dataLayerObj.row_id+"&ContextName="+contextName+"&ContextUUID="+row_area_type+"&Site="+region;
+            var content_url = "https://staging.bing.bestseller.com/on/demandware.store/Sites-Site/default/ViewLibraryContentList_52-Dispatch?FolderUUID=&LibraryUUID=bcD6EiaaiT2loaaadqVwsUVdqy&SearchTerm="+dataLayerObj.id+"&find=&NewContentID=&PageNumberPrefix=PageNumber_&PageableID=586508a93eec31a34fdd8dbb0c&PageableName=ContentAssets&CurrentPageNumber=0";
+
+            $(".hover-textbox").css({"display":"inline", "position":"absolute", "z-index":10, "left":left, "top":top});
+            $(".hover-textbox").html("<b>Type: </b>Instagram Widget<br><b>ID: </b><a href='"+content_url+"' style='color:blue;font-weight:normal;text-transform:lowercase;' target='_blank'>"+dataLayerObj.id+"</a><br><b>Row: </b><a href='"+slot_url+"' style='color:blue;font-weight:normal;text-transform:lowercase;' target='_blank'>"+dataLayerObj.row_id+"</a>");
+
+        }
+    });
     $(".product-tile").hover(function(event) {
         var dataLayerObj = $(this).attr("data-layer-impression");
             dataLayerObj = $.parseJSON(dataLayerObj);
