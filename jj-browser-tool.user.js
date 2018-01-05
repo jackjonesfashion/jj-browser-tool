@@ -88,7 +88,7 @@ if (url.indexOf("demandware") <= 0){
             contextName = "category";
             region = "BSE-DK";
         }
-        var left = event.pageX;
+        var left = event.pageX - 200;
         var top = event.pageY - 100;
         if(placeholder != dataLayerObj.id){
             placeholder = dataLayerObj.id;
@@ -113,7 +113,7 @@ if (url.indexOf("demandware") <= 0){
             contextName = "category";
             region = "BSE-DK";
         }
-        var left = event.pageX;
+        var left = event.pageX - 200;
         var top = event.pageY - 100;
         if(placeholder != dataLayerObj.id){
             placeholder = dataLayerObj.id;
@@ -138,7 +138,7 @@ if (url.indexOf("demandware") <= 0){
             contextName = "category";
             region = "BSE-DK";
         }
-        var left = event.pageX;
+        var left = event.pageX - 200;
         var top = event.pageY - 100;
         if(placeholder != dataLayerObj.ecommerce.promoClick.promotions[0].id){
             placeholder = dataLayerObj.ecommerce.promoClick.promotions[0].id;
@@ -163,7 +163,7 @@ if (url.indexOf("demandware") <= 0){
             contextName = "category";
             region = "BSE-DK";
         }
-        var left = event.pageX;
+        var left = event.pageX - 200;
         var top = event.pageY - 100;
         if(placeholder != dataLayerObj.id){
             placeholder = dataLayerObj.id;
@@ -190,7 +190,7 @@ if (url.indexOf("demandware") <= 0){
                 region = "BSE-DK";
             }
         }
-        var left = event.pageX;
+        var left = event.pageX - 100;
         var top = event.pageY - 100;
         if(placeholder != dataLayerObj.id){
             placeholder = dataLayerObj.id;
@@ -205,7 +205,7 @@ if (url.indexOf("demandware") <= 0){
     $(".product-tile").hover(function(event) {
         var dataLayerObj = $(this).attr("data-layer-impression");
             dataLayerObj = $.parseJSON(dataLayerObj);
-            var left = event.pageX;
+            var left = event.pageX - 100;
             var top = event.pageY - 100;
         if(placeholder != dataLayerObj.id){
             placeholder = dataLayerObj.id;
