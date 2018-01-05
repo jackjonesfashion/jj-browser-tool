@@ -6,6 +6,8 @@
 // @author       Jack & Jones Ecommerce
 // @include      *.jackjones.com*
 // @include      *.selected.com*
+// @include      *.vila.com*
+// @include      *.nameit.com*
 // @require      https://code.jquery.com/jquery-3.0.0-beta1.min.js
 // @updateURL    https://raw.githubusercontent.com/jackjonesfashion/jj-browser-tool/master/jj-browser-tool.user.js
 // @downloadURL  https://raw.githubusercontent.com/jackjonesfashion/jj-browser-tool/master/jj-browser-tool.user.js
