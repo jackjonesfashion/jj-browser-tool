@@ -20,3 +20,7 @@ https://raw.githubusercontent.com/jackjonesfashion/jj-browser-tool/master/jj-bro
 Once clicked a new browser window from Tampermonkey should appear.
 
 Click the install button, and wait for the installation to complete.
+
+### Updating through Tampermonkey
+
+As a developer remember to increment the version number of the code by 1 everytime a change has been made, in order for Tampermonky to be able to detect that it needs to update the code with a new version.
