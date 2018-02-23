@@ -95,8 +95,13 @@ if (url.indexOf("demandware") <= 0){
             var slot_url = "https://staging.bing.bestseller.com/on/demandware.store/Sites-Site/-/StorefrontEditing-Slot?SlotID="+dataLayerObj.row_id+"&ContextName="+contextName+"&ContextUUID="+row_area_type+"&Site="+region;
             var content_url = "https://staging.bing.bestseller.com/on/demandware.store/Sites-Site/default/ViewLibraryContentList_52-Dispatch?FolderUUID=&LibraryUUID=bcD6EiaaiT2loaaadqVwsUVdqy&SearchTerm="+dataLayerObj.id+"&find=&NewContentID=&PageNumberPrefix=PageNumber_&PageableID=586508a93eec31a34fdd8dbb0c&PageableName=ContentAssets&CurrentPageNumber=0";
 
-            $(".hover-textbox").css({"display":"inline", "position":"absolute", "z-index":10, "left":left, "top":top});
-            $(".hover-textbox").html("<b>Type: </b>Smart Widget<br><b>ID: </b><a href='"+content_url+"' style='color:blue;font-weight:normal;text-transform:lowercase;' target='_blank'>"+dataLayerObj.id+"</a><br><b>Row: </b><a href='"+slot_url+"' style='color:blue;font-weight:normal;text-transform:lowercase;' target='_blank'>"+dataLayerObj.row_id+"</a>");
+            var img = new Image();
+            img.onload = function(){
+                var dimensions = "<b>Image:</b> Width "+this.width+' x height '+ this.height;
+                $(".hover-textbox").css({"display":"inline", "position":"absolute", "z-index":10, "left":left, "top":top});
+                $(".hover-textbox").html("<b>Type: </b>Smart Widget<br><b>ID: </b><a href='"+content_url+"' style='color:blue;font-weight:normal;text-transform:lowercase;' target='_blank'>"+dataLayerObj.id+"</a><br><b>Row: </b><a href='"+slot_url+"' style='color:blue;font-weight:normal;text-transform:lowercase;' target='_blank'>"+dataLayerObj.row_id+"</a><br>"+dimensions);
+            };
+            img.src = image_path;
             
         }
     });
