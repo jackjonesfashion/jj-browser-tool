@@ -82,6 +82,7 @@ if (url.indexOf("demandware") <= 0){
         var dataLayerObj = $(this).attr("data-layer-promotion-view");
         dataLayerObj = $.parseJSON(dataLayerObj);
         var row_id = dataLayerObj.row_id;
+        var image_path = "https://"+window.location.hostname+dataLayerObj.creative;
         if(row_id.indexOf("category") >= 0){
             var name_parts = dataLayerObj.name.split("||");
             row_area_type = name_parts[0];
