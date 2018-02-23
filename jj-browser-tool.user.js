@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         jj-browser-tool
 // @namespace    http://tampermonkey.net/
-// @version      0.7
+// @version      0.8
 // @description  BING Language selector
 // @author       Jack & Jones Ecommerce
 // @include      *.jackjones.com*
@@ -17,7 +17,7 @@ var url = window.location.href;
 
 if (url.indexOf("demandware") <= 0){
     // Add hover text box
-    $(".content-wrapper").append("<div class='hover-textbox' style='background-color:#fff; display:none; border-style: solid; padding:10px; height:90px; width:250px;'></div>");
+    $(".content-wrapper").append("<div class='hover-textbox' style='background-color:#fff; display:none; border-style: solid; padding:10px; height:120px; width:250px;'></div>");
 
     // Add helper texts
     $(".servicebar__wrapper").append("<div class='service-helper' style='margin: auto;width: 100%; margin-top:45px;order: 3px solid green;padding: 0px; text-align:center; line-height:normal; position:absolute;'></div>");
