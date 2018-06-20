@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         jj-browser-tool
 // @namespace    http://tampermonkey.net/
-// @version      0.8
+// @version      0.9
 // @description  BING Language selector
 // @author       Jack & Jones Ecommerce
 // @include      *.jackjones.com*
@@ -98,7 +98,7 @@ if (url.indexOf("demandware") <= 0){
 
             var img = new Image();
             img.onload = function(){
-                var dimensions = "<b>Image:</b> Width "+this.width+' x height '+ this.height;
+                var dimensions = "<b>Image:</b> Width "+this.width+' x height '+ this.height + '<br><b>Path</b> ' + dataLayerObj.creative.match(/([^\/]*)$/)[0];
                 $(".hover-textbox").css({"display":"inline", "position":"absolute", "z-index":10, "left":left, "top":top});
                 $(".hover-textbox").html("<b>Type: </b>Smart Widget<br><b>ID: </b><a href='"+content_url+"' style='color:blue;font-weight:normal;text-transform:lowercase;' target='_blank'>"+dataLayerObj.id+"</a><br><b>Row: </b><a href='"+slot_url+"' style='color:blue;font-weight:normal;text-transform:lowercase;' target='_blank'>"+dataLayerObj.row_id+"</a><br>"+dimensions);
             };
