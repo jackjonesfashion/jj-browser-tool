@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         jj-browser-tool
 // @namespace    http://tampermonkey.net/
-// @version      0.9
+// @version      0.91
 // @description  BING Language selector
 // @author       Jack & Jones Ecommerce
 // @include      *.jackjones.com*
@@ -211,7 +211,7 @@ if (url.indexOf("demandware") <= 0){
     $(".product-tile").hover(function(event) {
         var dataLayerObj = $(this).attr("data-layer-impression");
             dataLayerObj = $.parseJSON(dataLayerObj);
-            var left = event.pageX - 100;
+            var left = event.pageX - 350;
             var top = event.pageY - 100;
         if(placeholder != dataLayerObj.id){
             placeholder = dataLayerObj.id;
@@ -219,6 +219,37 @@ if (url.indexOf("demandware") <= 0){
 
             $(".hover-textbox").css({"display":"inline", "position":"absolute", "z-index":10, "left":left, "top":top});
             $(".hover-textbox").html("<b>Type: </b>Product Tile<br><b>EAN: </b>"+dataLayerObj.id+"<br><b>Style: </b>"+dataLayerObj.articleNumber+"<br><b>Subbrand: </b>"+dataLayerObj.subbrand);
+        }
+    });
+    $(".widget__dynamic-promotion").hover(function(event) {
+        var row_area_type = "jj-home-page-rows";
+        var contextName = "folder";
+        var region = "BSE-DK";
+        var dataLayerObj = $(this).attr("data-layer-promotion-view");
+        dataLayerObj = $.parseJSON(dataLayerObj);
+        var row_id = dataLayerObj.row_id;
+        var image_path = "https://"+window.location.hostname+dataLayerObj.creative;
+        if(row_id.indexOf("category") >= 0){
+            var name_parts = dataLayerObj.name.split("||");
+            row_area_type = name_parts[0];
+            contextName = "category";
+            region = "BSE-DK";
+        }
+        var left = event.pageX - 350;
+        var top = event.pageY - 100;
+        if(placeholder != dataLayerObj.id){
+            placeholder = dataLayerObj.id;
+            var slot_url = "https://staging.bing.bestseller.com/on/demandware.store/Sites-Site/-/StorefrontEditing-Slot?SlotID="+dataLayerObj.row_id+"&ContextName="+contextName+"&ContextUUID="+row_area_type+"&Site="+region;
+            var content_url = "https://staging.bing.bestseller.com/on/demandware.store/Sites-Site/default/ViewLibraryContentList_52-Dispatch?FolderUUID=&LibraryUUID=bcD6EiaaiT2loaaadqVwsUVdqy&SearchTerm="+dataLayerObj.id+"&find=&NewContentID=&PageNumberPrefix=PageNumber_&PageableID=586508a93eec31a34fdd8dbb0c&PageableName=ContentAssets&CurrentPageNumber=0";
+
+            var img = new Image();
+            img.onload = function(){
+                var dimensions = "<b>Image:</b> Width "+this.width+' x height '+ this.height + '<br><b>Name:</b> ' + dataLayerObj.creative.match(/([^\/]*)$/)[0];
+                $(".hover-textbox").css({"display":"inline", "position":"absolute", "z-index":10, "left":left, "top":top});
+                $(".hover-textbox").html("<b>Type: </b>Promotion Tile<br><b>ID: </b><a href='"+content_url+"' style='color:blue;font-weight:normal;text-transform:lowercase;' target='_blank'>"+dataLayerObj.id+"</a><br><b>Row: </b><a href='"+slot_url+"' style='color:blue;font-weight:normal;text-transform:lowercase;' target='_blank'>"+dataLayerObj.row_id+"</a><br>"+dimensions);
+            };
+            img.src = image_path;
+
         }
     });
 }
