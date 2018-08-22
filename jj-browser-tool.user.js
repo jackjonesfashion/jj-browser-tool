@@ -8,6 +8,7 @@
 // @include      *.selected.com*
 // @include      *.vila.com*
 // @include      *.nameit.com*
+// @include      *.bestseller.com*
 // @require      https://code.jquery.com/jquery-3.0.0-beta1.min.js
 // @updateURL    https://raw.githubusercontent.com/jackjonesfashion/jj-browser-tool/master/jj-browser-tool.user.js
 // @downloadURL  https://raw.githubusercontent.com/jackjonesfashion/jj-browser-tool/master/jj-browser-tool.user.js
@@ -84,7 +85,10 @@ if (url.indexOf("demandware") <= 0){
         var row_id = dataLayerObj.row_id;
         var image_path = "https://"+window.location.hostname+dataLayerObj.creative;
         if(row_id.indexOf("category") >= 0){
-            var name_parts = dataLayerObj.name.split("||");
+            var name_parts = "";
+            if(dataLayerObj.name){
+                name_parts = dataLayerObj.name.split("||");
+            }
             row_area_type = name_parts[0];
             contextName = "category";
             region = "BSE-DK";
