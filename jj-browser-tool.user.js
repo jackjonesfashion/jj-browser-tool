@@ -301,3 +301,14 @@ function updateTopNavLangaugeSelector(type, id){
         $(".service-helper").append(area);
     }
 }
+
+// highlight broken images
+$('img').each(function() {
+    var img = $(this);
+
+    img.on('error', function() {
+    //img.error(function() {
+        img.addClass('tool-broken-image')
+        img.attr('style', 'border:1px solid red; filter:none')
+    }).attr('src', img.attr('src'));
+});
