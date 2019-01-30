@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         jj-browser-tool
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.3
 // @description  BING Language selector
 // @author       Jack & Jones Ecommerce
 // @include      *.jackjones.com*
@@ -41,7 +41,9 @@ if (url.indexOf("demandware") <= 0){
             cgid = "sl-homme";
         } else if(url.indexOf("sl/femme") >= 0){
             cgid = "sl-femme";
-        }
+        } else {
+            cgid = dataLayer[0]["page"]["category"];
+        }
 
         // Append languages
         updateTopNavLangaugeSelector("plp", cgid);
