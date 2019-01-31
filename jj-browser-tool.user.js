@@ -314,3 +314,12 @@ $('img').each(function() {
         img.attr('style', 'border:1px solid red; filter:none')
     }).attr('src', img.attr('src'));
 });
+
+$(document).ready(function(){
+    function highlightMissingAltText() {
+        $('img[alt=""]').css('border', '4px red dashed');
+        $('img:not([alt])').css('border', '4px red dashed');
+    }
+
+    highlightMissingAltText();
+});
