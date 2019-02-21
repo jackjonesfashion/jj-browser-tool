@@ -10,8 +10,7 @@
 // @include      *.nameit.com*
 // @include      *.bestseller.com*
 // @Exclude      *my.bestseller.com*
-// @Exclude      *staging*
-// @Exclude      *development*
+// @Exclude      *demandware*
 // @require      https://code.jquery.com/jquery-3.0.0-beta1.min.js
 // @updateURL    https://raw.githubusercontent.com/jackjonesfashion/jj-browser-tool/master/jj-browser-tool.user.js
 // @downloadURL  https://raw.githubusercontent.com/jackjonesfashion/jj-browser-tool/master/jj-browser-tool.user.js
