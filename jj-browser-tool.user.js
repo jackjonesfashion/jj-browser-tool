@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         jj-browser-tool
 // @namespace    http://tampermonkey.net/
-// @version      1.4
+// @version      1.5
 // @description  BING Language selector
 // @author       Jack & Jones Ecommerce
 // @include      *.jackjones.com*
