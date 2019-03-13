@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         jj-browser-tool
 // @namespace    http://tampermonkey.net/
-// @version      1.5
+// @version      1.6
 // @description  BING Language selector
 // @author       Jack & Jones Ecommerce
 // @include      *.jackjones.com*
@@ -288,7 +288,7 @@ function updateTopNavLangaugeSelector(type, id){
         $(".language-selector").append("<div class='lang-it market' style='width:20px; display:inline;'><a style='padding:10px;' href='/it/it/home'>IT</a></div>");
         $(".lang-it").append("<div class='langs' style='position:absolute; margin-left: auto; margin-right: auto;left: -30px;right: 0; display:none;'><a style='padding:10px;' href='/it/en/"+urlPath+"'>EN</a><a style='padding:10px;' href='/it/it/"+urlPath+"'>IT</a></div>");
         $(".language-selector").append("<div class='lang-ie market' style='width:20px; display:inline;'><a style='padding:10px;' href='/ie/en/home'>IE</a></div>");
-        $(".lang-ie").append("<div class='langs' style='position:absolute; margin-left: auto; margin-right: auto;left: 30px;right: 0; display:none;'><a style='padding:10px;' href='/ie/en/ho"+urlPath+"me'>EN</a></div>");
+        $(".lang-ie").append("<div class='langs' style='position:absolute; margin-left: auto; margin-right: auto;left: 30px;right: 0; display:none;'><a style='padding:10px;' href='/ie/en/"+urlPath+"'>EN</a></div>");
         $(".language-selector").append("<div class='lang-es market' style='width:20px; display:inline;'><a style='padding:10px;' href='/es/es/home'>ES</a></div>");
         $(".lang-es").append("<div class='langs' style='position:absolute; margin-left: auto; margin-right: auto;left: 100px;right: 0; display:none;'><a style='padding:10px;' href='/es/en/"+urlPath+"'>EN</a><a style='padding:10px;' href='/es/es/"+urlPath+"'>ES</a></div>");
         $(".language-selector").append("<div class='lang-be market' style='width:20px; display:inline;'><a style='padding:10px;' href='/be/nl/home'>BE</a></div>");
