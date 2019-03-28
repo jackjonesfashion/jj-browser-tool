@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         jj-browser-tool
 // @namespace    http://tampermonkey.net/
-// @version      1.6
+// @version      1.7
 // @description  BING Language selector
 // @author       Jack & Jones Ecommerce
 // @include      *.jackjones.com*
@@ -39,10 +39,10 @@ if (url.indexOf("demandware") <= 0){
         var cgid = "";
         if($(".breadcrumb-navigation__link").length > 0){
             cgid = $(".breadcrumb-navigation__link").last().attr("data-category-id");
-        } else if(url.indexOf("sl/homme") >= 0){
-            cgid = "sl-homme";
-        } else if(url.indexOf("sl/femme") >= 0){
-            cgid = "sl-femme";
+        //} else if(url.indexOf("sl/homme") >= 0){
+        //    cgid = "sl-homme";
+        //} else if(url.indexOf("sl/femme") >= 0){
+        //    cgid = "sl-femme";
         } else {
             cgid = dataLayer[0]["page"]["category"];
         }
