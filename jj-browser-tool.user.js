@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         jj-browser-tool
 // @namespace    http://tampermonkey.net/
-// @version      1.7
+// @version      1.8
 // @description  BING Language selector
 // @author       Jack & Jones Ecommerce
 // @include      *.jackjones.com*
@@ -71,12 +71,17 @@ if (url.indexOf("demandware") <= 0){
         $(".service-helper").append("Stylename: " + pname +  ".&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Style ID: " + pid + ".&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Primary Category: " + cgid + ".&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Style Option: <span class='js__update--so'>" + so + "</span>" + ".&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EAN: <span class='js__update--ean'>" + pean + "</span>");
     }
     
-    $(".market").hover(function() {
+   $(".market").hover(function() {
         $(this).find("a:first").css({ 'color': 'red' });
         $( this ).find("div").fadeIn( 100 );
+        $( this ).parent().css({"display":"block"});
+        $( this ).parent().css({"margin-top":"-68px"});
+        $(".service-helper").css({"margin-top":"-20px"});
     }, function(){
         $(this).find("a:first").css({ 'color': '#666' });
         $( this ).find("div").fadeOut( 100 );
+         $( this ).parent().css({"margin-top":"-68px"});
+        $(".service-helper").css({"margin-top":"-20px"});
     });
 
     var placeholder = "";
