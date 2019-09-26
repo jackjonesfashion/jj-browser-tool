@@ -22,7 +22,6 @@ GM_addStyle ( `
         margin: auto;
         width: 100%;
         margin-top:0px;
-        border: 3px solid green;
         padding: 0px;
         text-align:center;
         line-height:normal;    
