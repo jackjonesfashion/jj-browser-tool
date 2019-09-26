@@ -14,7 +14,28 @@
 // @require      https://code.jquery.com/jquery-3.0.0-beta1.min.js
 // @updateURL    https://raw.githubusercontent.com/jackjonesfashion/jj-browser-tool/master/jj-browser-tool.user.js
 // @downloadURL  https://raw.githubusercontent.com/jackjonesfashion/jj-browser-tool/master/jj-browser-tool.user.js
+// @grant    GM_addStyle
 // ==/UserScript==
+
+GM_addStyle ( `
+    .language-selector {
+        margin: auto;
+        width: 100%;
+        margin-top:0px;
+        border: 3px solid green;
+        padding: 0px;
+        text-align:center;
+        line-height:normal;    
+        position:absolute;
+    }
+
+    @media only screen and (max-width: 1280px) {
+        .hover-textbox {
+            display: none !important;
+        }
+    }
+` );
+
 
 var url = window.location.href;
 
@@ -26,8 +47,7 @@ if (url.indexOf("demandware") <= 0){
     $(".servicebar__wrapper").append("<div class='service-helper' style='margin: auto;width: 100%; margin-top:45px;order: 3px solid green;padding: 0px; text-align:center; line-height:normal; position:absolute;'></div>");
      
     // Add language container
-    $(".servicebar__wrapper").append("<div class='language-selector' style='margin: auto;width: 100%; margin-top:0px;order: 3px solid green;padding: 0px; text-align:center; line-height:normal; position:absolute;'></div>");
-
+    $(".servicebar__wrapper").append("<div class='language-selector'></div>");
     // Is it homepage?
     if (url.indexOf("home") >= 0 && $("#wrapper").hasClass("homepage") > 0){
         // Append languages
@@ -75,13 +95,9 @@ if (url.indexOf("demandware") <= 0){
         $(this).find("a:first").css({ 'color': 'red' });
         $( this ).find("div").fadeIn( 100 );
         $( this ).parent().css({"display":"block"});
-        $( this ).parent().css({"margin-top":"-68px"});
-        $(".service-helper").css({"margin-top":"-20px"});
     }, function(){
         $(this).find("a:first").css({ 'color': '#666' });
         $( this ).find("div").fadeOut( 100 );
-         $( this ).parent().css({"margin-top":"-68px"});
-        $(".service-helper").css({"margin-top":"-20px"});
     });
 
     var placeholder = "";
@@ -222,17 +238,18 @@ if (url.indexOf("demandware") <= 0){
         }
     });
     $(".product-tile").hover(function(event) {
+        var productID = $(this).attr("id");
         var dataLayerObj = $(this).attr("data-layer-impression");
             dataLayerObj = $.parseJSON(dataLayerObj);
             var left = event.pageX - 350;
             var top = event.pageY - 100;
         if(placeholder != dataLayerObj.id){
             placeholder = dataLayerObj.id;
-
+            var link_url = "https://staging.bing.bestseller.com/on/demandware.store/Sites-Site/default/ViewProduct_52-Edit?ProductID="+productID+"";
 
             $(".hover-textbox").css({"display":"inline", "position":"absolute", "z-index":10, "left":left, "top":top});
-            $(".hover-textbox").html("<b>Type: </b>Product Tile<br><b>EAN: </b>"+dataLayerObj.id+"<br><b>Style: </b>"+dataLayerObj.articleNumber+"<br><b>Subbrand: </b>"+dataLayerObj.subbrand);
-        }
+            $(".hover-textbox").html("<b>Type: </b>Product Tile<br><b>EAN: </b>"+dataLayerObj.id+"<br><b>Style: </b>"+dataLayerObj.articleNumber+"<br><b>Subbrand: </b>"+dataLayerObj.subbrand+"<br><b>Product Link: </b><a href='"+link_url+"' style='color:blue;font-weight:normal;font-size: 11px;' target='_blank'>"+productID+"</a>");    
+    }
     });
     $(".widget__dynamic-promotion").hover(function(event) {
         var row_area_type = "jj-home-page-rows";
@@ -306,6 +323,9 @@ function updateTopNavLangaugeSelector(type, id){
         $(".lang-ch").append("<div class='langs' style='position:absolute; margin-left: auto; margin-right: auto;left: 390px;right: 0; display:none;'><a style='padding:10px;' href='/ch/en/"+urlPath+"'>EN</a><a style='padding:10px;' href='/ch/de/"+urlPath+"'>CH</a><a style='padding:10px;' href='/ch/fr/"+urlPath+"'>FR</a></div>");
         $(".language-selector").append("<div class='lang-at market' style='width:20px; display:inline;'><a style='padding:10px;' href='/at/de/home'>AT</a></div>");
         $(".lang-at").append("<div class='langs' style='position:absolute; margin-left: auto; margin-right: auto;left: 470px;right: 0; display:none;'><a style='padding:10px;' href='/at/en/"+urlPath+"'>EN</a><a style='padding:10px;' href='/at/de/"+urlPath+"'>AT</a></div>");
+        $(".language-selector").append("<div class='lang-pl market' style='width:20px; display:inline;'><a style='padding:10px;' href='/pl/pl/home'>PL</a></div>");
+        $(".lang-pl").append("<div class='langs' style='position:absolute; margin-left: auto; margin-right: auto;left: 470px;right: 0; display:none;'><a style='padding:10px;' href='/pl/en/"+urlPath+"'>EN</a><a style='padding:10px;' href='/pl/pl/"+urlPath+"'>PL</a></div>");
+        $(".language-selector").append("<div class='lang-rw market' style='width:20px; display:inline;'><a style='padding:10px;' href='/rw/en/home'>RW</a></div>");
     if(area !== ""){
         $(".service-helper").append(area);
     }
