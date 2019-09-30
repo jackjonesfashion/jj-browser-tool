@@ -4,9 +4,17 @@
 // @version      2.0
 // @description  BING Language selector
 // @author       Jack & Jones Ecommerce
+// @include      *.onlyandsons.com*
+// @include      *.bianco.com*
+// @include      *.y-a-s.com*
+// @include      *.pieces.com*
+// @include      *.only.com*
+// @include      *.mamalicious.com*
 // @include      *.jackjones.com*
+// @include      *.jlindeberg.com*
 // @include      *.selected.com*
 // @include      *.vila.com*
+// @include      *.veromoda.com*
 // @include      *.nameit.com*
 // @include      *.bestseller.com*
 // @Exclude      *my.bestseller.com*
