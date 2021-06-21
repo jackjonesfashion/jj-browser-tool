@@ -255,7 +255,7 @@ if (url.indexOf("demandware") <= 0){
             var link_url = "https://staging.bing.bestseller.com/on/demandware.store/Sites-Site/default/ViewProduct_52-Edit?ProductID="+productID+"";
 
             $(".hover-textbox").css({"display":"inline", "position":"absolute", "z-index":10, "left":left, "top":top});
-            $(".hover-textbox").html("<b>Type: </b>Product Tile<br><b>EAN: </b>"+dataLayerObj.id+"<br><b>Style: </b>"+dataLayerObj.articleNumber+"<br><b>Subbrand: </b>"+dataLayerObj.subbrand+"<br><b>Product Link: </b><a href='"+link_url+"' style='color:blue;font-weight:normal;font-size: 11px;' target='_blank'>"+productID+"</a>");    
+            $(".hover-textbox").html("<b>Type: </b>Product Tile<br><b>EAN: </b>"+dataLayerObj.id+"<br><b>Style: </b>"+dataLayerObj.articleNumber+"<br><b>Subbrand: </b>"+dataLayerObj.subbrand+"<br><b>Promotion/Coupon: </b>"+dataLayerObj.coupon+"<br><b>Product Link: </b><a href='"+link_url+"' style='color:blue;font-weight:normal;font-size: 11px;' target='_blank'>"+productID+"</a>");    
     }
     });
     $(".widget__dynamic-promotion").hover(function(event) {
